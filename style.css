@@ -8,6 +8,12 @@ body {
   font-size: 100%;
   height: 100%;
   zoom: 1;
+  margin: auto;
+  gap: 0.5rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  justify-content: center;
+  /* cursor: pointer;  */
 }
 
 h1,
@@ -19,6 +25,12 @@ h3 {
 h1 {
   color: #666;
   font-size: 1.5em;
+  font-weight: bold;
+}
+
+h2 {
+  color: #666;
+  font-size: 1em;
   font-weight: bold;
 }
 
@@ -74,17 +86,19 @@ blockquote:after {
   content: '"';
 }
 
-/* @mixin uppercase {
-  text-transform: uppercase;
+.question-card {
+  font-family: "League Spartan", sans-serif;
+  position: relative;
+  background: transparent;
+  margin: 1em;
+  width: 75%;
+  height: 28px;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  user-select: none;
 }
-
-@mixin center {
-  margin: 0 auto;
-}
-
-@mixin rounded($amount) {
-  border-radius: $amount;
-} */
 
 input[type="button"] {
   background: gray;
@@ -102,22 +116,6 @@ input.discard {
   background: maroon;
 }
 
-/*.intro {
-  position: relative;
-  margin: 10px;
-  width: 40%;
-  height: auto;
-  color: #444;
-}*/
-
-@mixin deck {
-  position: relative;
-  background: transparent;
-  margin: 3em;
-  width: 99%;
-  height: auto;
-}
-
 @mixin card {
   position: relative;
   display: inline-block;
@@ -127,20 +125,6 @@ input.discard {
   height: 200px;
   margin-right: 20px;
   cursor: pointer;
-}
-
-.deck {
-  /* @include deck; */
-}
-
-.card {
-  /* @include card; */
-}
-
-.suit {
-  position: relative;
-  color: #aaa;
-  text-align: left;
 }
 
 .card .face {
@@ -155,122 +139,10 @@ input.discard {
   box-shadow: 4px 4px 10px #555; /* Slim drop shadow so as not to bleed into the bounding box of the next card  */
 }
 
-.card .front {
+.answer-card .front {
   background: olive;
   transform: rotateX(0deg) rotateY(0deg);
   transition: all 0.4s ease-in-out;
   backface-visibility: visible;
   z-index: 10;
-}
-
-/* .card:nth-child(1) {
-  transform: rotateX(0deg) rotateY(0deg) rotateZ(-45deg);
-  animation: drop1 0.5s ease-in;
-}
-
-.card:nth-child(2) {
-  transform: rotateX(0deg) rotateY(0deg) rotateZ(-20deg);
-  animation: drop2 0.5s ease-in;
-}
-
-.card:nth-child(3) {
-  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-  animation: drop3 0.5s ease-in;
-}
-
-.card:nth-child(4) {
-  transform: rotateX(0deg) rotateY(0deg) rotateZ(20deg);
-  animation: drop4 0.5s ease-in;
-}
-
-.card:nth-child(5) {
-  transform: rotateX(0deg) rotateY(0deg) rotateZ(40deg);
-  animation: drop5 0.5s ease-in;
-} */
-
-/* Deal cards and apply some random spin  */
-@keyframes drop1 {
-  0% {
-    transform: scale(2, 2) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-  }
-  50% {
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(-25deg);
-  }
-  100% {
-    transform: scale(0.97, 0.97) rotateX(0deg) rotateY(0deg) rotateZ(-45deg);
-  }
-}
-
-@keyframes drop2 {
-  0% {
-    transform: scale(2, 2) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-  }
-  50% {
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(-10deg);
-  }
-  100% {
-    transform: scale(0.97, 0.97) rotateX(0deg) rotateY(0deg) rotateZ(-20deg);
-  }
-}
-
-@keyframes drop3 {
-  0% {
-    transform: scale(2, 2) rotateX(0deg) rotateY(0deg) rotateZ(-50deg);
-  }
-  50% {
-    transform: rotateX(0deg) rotateY(50deg) rotateZ(25deg);
-  }
-  100% {
-    transform: scale(0.98, 0.98) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-  }
-}
-
-@keyframes drop4 {
-  0% {
-    transform: scale(2, 2) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-  }
-  50% {
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(10deg);
-  }
-  100% {
-    transform: scale(0.98, 0.98) rotateX(0deg) rotateY(0deg) rotateZ(20deg);
-  }
-}
-
-@keyframes drop5 {
-  0% {
-    transform: scale(2, 2) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-  }
-  50% {
-    transform: rotateX(0deg) rotateY(50deg) rotateZ(-10deg);
-  }
-  100% {
-    transform: scale(0.98, 0.98) rotateX(0deg) rotateY(0deg) rotateZ(40deg);
-  }
-}
-
-.card .back {
-  background: purple;
-  transform: rotateX(0deg) rotateY(180deg);
-  transform-style: preserve-3d;
-  transition: all 0.4s ease-in-out;
-  backface-visibility: hidden;
-  z-index: 5;
-}
-
-/* Flip the card and apply easing */
-.card.flip .front {
-  transform: rotateY(180deg);
-  transform-style: preserve-3d;
-  transition: all 0.4s ease-in-out;
-  backface-visibility: hidden;
-  z-index: 900;
-}
-
-.card.flip .back {
-  transform: rotateY(0deg);
-  transform-style: preserve-3d;
-  transition: all 0.4s ease-in-out;
-  backface-visibility: visible;
-  z-index: 1000;
 }

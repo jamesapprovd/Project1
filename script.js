@@ -1,3 +1,38 @@
+////////////////////////////////////////////
+////PLAYERS SETUP
+///////////////////////////////////////////
+class Player {
+  constructor(
+    name,
+    role = ["decider", "answerer"],
+    points = 0,
+    ) {
+    (this.name = name),
+    (this.points = points);
+    (this.role = role);
+  }
+  announcePoints() {
+    console.log(this.points);
+  }
+  // chooseAnswer {
+  //   if this.role = "answerer"() {
+  //   }
+  // }
+  winRound() {
+    points += 1;
+     console.log(
+      `${this.name}'s card was selected as the best and wins the round!`
+    );
+  }
+}
+
+const player1 = new Player("player1");
+// console.log(player1.announcePoints());
+const player2 = new Player("player2");
+const player3 = new Player("player3");
+const player4 = new Player("player4");
+const player5 = new Player("player5");
+
 const questionCards = [
   "______ is a sure sign of mankind's decline",
   "Why haven't we found our next prime minister?",
@@ -37,23 +72,33 @@ const questionCards = [
   "Ladies and gentlemen, I have discovered something amazing. I have discovered ____.",
 ];
 
+document
+  .getElementById("dealquestion")
+  .addEventListener("click", getQuestionCard);
+
 // Deal new question card from question deck
 function getQuestionCard() {
-  for (i = 0; i <= questionCards.length; i++) {
-    var str = ".card" + i;
-    $(el).text(output);
+  console.log("Game Start Button Clicked");
+  document.getElementById("dealquestion").innerHTML = "GAME STARTED!";
+  
+  const selectedQuestionCard = [Math.floor(Math.random() * questionCards.length)];
+   for (i = 0; i < questionCards.length; i++) {
+    const p = document.createElement("p");
+    p.innerText = questionCards[i];
+    // li.className = "baddy";
+    // ul.append(li);
+    // document.getElementById("Mordor").append(ul);
   }
+
+  
+};
+
 }
 
 delay = 500; //delay the effect
 fadetime = 500; // fade in time
 
-// var clicked = false; // set flag for clicked state
-//lastClicked = ""; // last card clicked
-suit = ["clubs", "hearts", "diamonds", "spades"];
-deck = ["ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "queen", "king"];
-
-// Modified Shuffle by Chris Coyier
+// Modified Shuffle
 // https://css-tricks.com/snippets/javascript/shuffle-array/
 function shuffle(o) {
   for (
@@ -81,7 +126,7 @@ function getCards() {
   }
 }
 
-// Deal cards in sequence
+// Deal answer Cards in sequence
 function deal() {
   $(".card").hide();
   clicked = false; // set flag for clicked state
