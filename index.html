@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cards for Humanity</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Cards for Humanity Prototype</h1>
+        <p>
+        <label for="playerNumbers">Number of players:</label>
+        <select name="playerNumbers" id="playerNumbers">
+          <option value="three">3</option>
+          <option value="four">4</option>
+          <option value="five">5</option>
+        </select>
+        <input type="submit" value="Submit">  
+        <!-- this goes to some server right, trying to link it to gameplay -->
+      </form>
+        </p>
+
+    <div class="row">
+      <div class="column left" style="background-color: rgb(144, 160, 135)">
+        <h3>QUESTION CARD</h3>
+        <p>[Player 1] gets a question card</p>
+        <input class="dealquestion" type="button" value="Start Game" />
+      </div>
+      
+      <div class="column right" style="background-color: rgb(246, 247, 239)">
+        <h3>ANSWER CARDS</h3>
+        <p>[Player 2] chooses the preferred answer</p>
+        <input class="dealanswers" type="button" value="Deal Answer Cards" />
+        <div class="deck">
+          <div class="card card1">
+            <div class="face front">front</div>
+            <div class="face back"></div>
+          </div>
+          <div class="card card2">
+            <div class="face front">front</div>
+            <div class="face back"></div>
+          </div>
+          <div class="card card3">
+            <div class="face front">front</div>
+            <div class="face back"></div>
+          </div>
+          <div class="card card4">
+            <div class="face front">front</div>
+            <div class="face back"></div>
+          </div>
+          <div class="card card5">
+            <div class="face front">front</div>
+            <div class="face back"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js" charset="utf-8"></script>
+  </body>
+</html>
