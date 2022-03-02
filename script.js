@@ -6,157 +6,102 @@ class Player {
     name,
     role = ["decider", "answerer"],
     points = 0,
-    ) {
+    playercards = []
+  ) {
     (this.name = name),
-    (this.points = points);
-    (this.role = role);
+      (this.points = points),
+      (this.role = role),
+      (this.playercards = playercards);
   }
   announcePoints() {
     console.log(this.points);
   }
+
+  getAnswerCards() {}
+
   // chooseAnswer {
   //   if this.role = "answerer"() {
   //   }
   // }
+
   winRound() {
     points += 1;
-     console.log(
+    console.log(
       `${this.name}'s card was selected as the best and wins the round!`
     );
   }
 }
-
 const player1 = new Player("player1");
-// console.log(player1.announcePoints());
 const player2 = new Player("player2");
 const player3 = new Player("player3");
 const player4 = new Player("player4");
 const player5 = new Player("player5");
 
+//Set up varianble for number of players //
+
+/////////////////////////////////////////////////////////////
+//// QUESTIONS SETUP
+/////////////////////////////////////////////////////////////
+
 const questionCards = [
   "______ is a sure sign of mankind's decline",
-  "Why haven't we found our next prime minister?",
-  "______: good to the last drop.",
-  "_: kid tested, mother approved",
-  "50% of all marriages end in _____",
+  "Why hasn't Singapore found its next prime minister?",
+  "______: good dead or alive.",
+  "_________: tested on children, mother approved",
+  "50% of all Singaporean marriages end in _____",
   "A romantic candlelit dinner would be incomplete without _____",
   "after months of practice, I think I'm finally ready for _____.",
   "Singapore Airlines now prohibit _____ on airplanes",
-  "As my New Year's resolution, I vow to give up _____.",
-  "But before I kill you, Mr. Bond, I must show you _____.",
+  "For my New Year's resolution, I vow to give up _____.",
+  "But before I kill you, Mr. Putin, I must show you _____.",
   "ChannelNewsAsia presents: the story of _____",
   "Daddy, why is mummy crying?",
-  "Dude, do not go in that washroom. There's ____ in there.",
-  "Due to a PR fiasco, Shopee can no longer sell _.",
+  "Hey bro, do not go in that washroom. There's ____ in there.",
+  "Due to a PR fiasco, Shopee and Lazada can no longer sell ________.",
   "How am I maintaining my relationship status?",
-  "I'm no doctor, but I'm pretty sure what you're suffering from is called ____",
+  "I'm not a doctor, but I'm pretty sure what you're suffering from is called ____",
   "I'm sorry, Professor, but I couldn't complete my homework because of _____",
   "I’m not like the rest of you. I'm too rich and busy for _____.",
-  "In her latest film, Fann Wong acts with _____ for the first time.",
-  "In the seventh circle of Hell, sinners must endure _____ for all eternity.",
+  "In her latest film, Zoe Tay and Fann Wong acts with _____ for the first time.",
+  "In the seventh depth of Hell, sinners must endure _____ for all eternity.",
   "Instead of coal, Father Christmas now gives the bad children ____.",
   "Maybe she's born with it. Maybe it's ____.",
-  "Rumor has it that Putin is ______.",
+  "Rumor has it that Lee Hsien Loong is ______.",
   "The school field trip was completely ruined by ____.",
   "This is your pilot speaking. Please prepare for ____.",
-  "What did I bring back from my trip to Thailand?",
-  "What don't you want to find in your Chinese food?",
+  "What did I bring back from my trip to Bangkok?",
+  "What don't you want to find in your Chicken Rice?",
   "What ended my last relationship?",
-  "What's a girl's best friend?",
+  "What's a Singapore SPG girl's best friend?",
   "When I am a billionare, I shall _____.",
   "When I am Prime Minister, I will create the Ministry of ____.",
   "Why can't I sleep at night?",
-  "Bow before me, for I am the Queen of _!",
+  "Bow before me, for I am the Queen of _______!",
   "Come with me, and I will show you a world of _____.",
-  "Foolish child! Did you think you could flee from _____?",
+  "Siao la! Did you think you could escape from _____?",
   "Ladies and gentlemen, I have discovered something amazing. I have discovered ____.",
 ];
 
-document
-  .getElementById("dealquestion")
-  .addEventListener("click", getQuestionCard);
+const startQuestion = document.querySelector(".dealquestion");
+startQuestion.addEventListener("click", getQuestionCard);
 
 // Deal new question card from question deck
 function getQuestionCard() {
-  console.log("Game Start Button Clicked");
-  document.getElementById("dealquestion").innerHTML = "GAME STARTED!";
-  
-  const selectedQuestionCard = [Math.floor(Math.random() * questionCards.length)];
-   for (i = 0; i < questionCards.length; i++) {
-    const p = document.createElement("p");
-    p.innerText = questionCards[i];
-    // li.className = "baddy";
-    // ul.append(li);
-    // document.getElementById("Mordor").append(ul);
-  }
-
-  
-};
-
+  // document.querySelector(".dealquestion").innerText = "GAME STARTED!";
+  console.log("Start Game button is working");
+  const selectedQuestionCard =
+    questionCards[Math.floor(Math.random() * questionCards.length)];
+  const p = document.createElement("p");
+  p.innerText = selectedQuestionCard;
+  p.className = "selectedQuestion";
+  document.querySelector(".questionCard-text").innerText = p.innerText;
 }
 
-delay = 500; //delay the effect
-fadetime = 500; // fade in time
+/////////////////////////////////////////////////////////////
+//// ANSWERS SETUP
+/////////////////////////////////////////////////////////////
 
-// Modified Shuffle
-// https://css-tricks.com/snippets/javascript/shuffle-array/
-function shuffle(o) {
-  for (
-    var j, x, i = o.length;
-    i;
-    j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x
-  );
-  return o;
-}
-
-// Random suit
-function getSuit() {
-  var x = parseInt(Math.random() * 4);
-  return suit[x];
-}
-
-// Deal new card from deck
-function getCards() {
-  for (var i = 0; i <= deck.length; i++) {
-    var str = ".card" + i;
-    var str2 = " .front";
-    var el = str.concat(str2);
-    var output = deck[i] + " of " + getSuit();
-    $(el).text(output);
-  }
-}
-
-// Deal answer Cards in sequence
-function deal() {
-  $(".card").hide();
-  clicked = false; // set flag for clicked state
-  shuffle(deck);
-  getCards();
-  $(".card1").delay(delay).fadeIn(fadetime);
-  $(".card2")
-    .delay(delay * 2)
-    .fadeIn(fadetime);
-  $(".card3")
-    .delay(delay * 3)
-    .fadeIn(fadetime);
-  $(".card4")
-    .delay(delay * 4)
-    .fadeIn(fadetime);
-  $(".card5")
-    .delay(delay * 5)
-    .fadeIn(fadetime);
-}
-deal();
-
-$(".deal").click(function () {
-  deal();
-});
-
-$(".card").click(function () {
-  $(this).toggleClass("flip");
-});
-
-const answerCards = [
+const answers = [
   "10,000 Ukrainian refugees.",
   "100% Pure New Zealand.",
   "400 years of colonial atrocities.",
@@ -764,3 +709,64 @@ const answerCards = [
   "My annoying sister.",
   "Never showering.",
 ];
+
+const answerCard = document.querySelector(".answer-card");
+const answerQuestion = document.querySelector("#dealanswers"); //clicking the "DEAL ANSWER CARD BUTTON"
+answerQuestion.addEventListener("click", dealAnswerCards);
+
+// Deal answer cards to current player in sequence
+function dealAnswerCards() {
+  console.log("Answer cards button is working");
+  document.querySelector(".beforedeal").className =
+    "flex-container answer-card";
+  // document.querySelectorAll(".answer-card");
+  // answerQuestion.clicked = true; // set flag for clicked state
+  // answerCard.classList.toggle("flipCard");
+}
+// delay = 500; //delay the effect
+// fadetime = 500; // fade in time
+// set timeout
+
+// document.querySelector(".answercard1");
+// // document.querySelector(".answercard1").delay(delay).fadeIn(fadetime);
+// // let answercard1 = [answer 1, answer];
+
+// document.querySelector(".answercard2");
+// let answercard2 = [];
+// // .delay(delay * 2)
+// // .fadeIn(fadetime);
+// document.querySelector(".answercard3");
+// let answercard3 = [];
+// // .delay(delay * 3)
+// // .fadeIn(fadetime);
+// document.querySelector(".answercard4");
+// let answercard4 = [];
+// // .delay(delay * 4)
+// // .fadeIn(fadetime);
+// document.querySelector(".answercard5");
+// let answercard5 = [];
+// // .delay(delay * 5)
+// // .fadeIn(fadetime);
+// // };
+
+// Insert answers from answer deck to 5 answer cards
+
+function insertAnswers() {
+  for (let i = 0; i <= answers.length; i++) {
+    const selectedAnswerText =
+      answerCards.splice[Math.floor(Math.random() * answerCards.length)]; //mind the (0, 2....)
+
+    const answerText1 = document.createElement("answercard1");
+    answerText.innerText = selectedAnswerText;
+    answerText.className = "selectedAnswer";
+    document.querySelector(".answercard1-text").innerText = selectedAnswerText;
+  }
+}
+// 5 cards
+
+// Nested for loops
+// For each
+
+// Player selects preferred answer card
+
+// Game announces preferred answer card

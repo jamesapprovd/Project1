@@ -10,6 +10,7 @@
   </head>
   <body>
     <h1>Cards for Humanity: Prototype Version</h1>
+    <h2>For people with no friends to play with</h2>
   <p>
         <label for="playerNumbers">Number of players:</label>
         <select name="playerNumbers" id="playerNumbers">
@@ -29,7 +30,7 @@
         <input class="dealquestion" type="button" value="Start Game" />
           <div class="card text-white bg-dark mb-3" style="max-width: 16rem;">
           <div class="card-body">
-          <p class="questionCard-text">lalala.</p>
+          <p class="questionCard-text">Click "START GAME" to draw a question card</p>
           </div>
         </div>
       </div>
@@ -37,32 +38,89 @@
       <div class="column right" style="background-color: rgb(246, 247, 239)">
         <h3>ANSWER CARDS</h3>
         <p>[Player 2] chooses the preferred answer</p>
-        <input class="dealanswers" type="button" value="Deal Answer Cards" />
+        <input id="dealanswers" type="button" value="Deal Answer Cards" />
+        
+        <div class = "beforedeal">
+                 
+          <div class="answercard1">
+            <!-- <div class="answer-cardback">Answer</div> -->
+            <!-- <div class="answerCardFront">nonsense text 1</div> -->
+          </div>
 
-        <div class="answer-card">
-          <div class="card card1">
-            <div class="face front">front</div>
-            <div class="face back"></div>
+          <div class="answercard2">
+            <!-- <div class="answer-cardback">Answer</div> -->
+            <!-- <div class="answerCardFront">nonsense text 2</div> -->
           </div>
-          <div class="card card2">
-            <div class="face front">front</div>
-            <div class="face back"></div>
+
+          <div class="answercard3">
+            <!-- <div class="answer-cardback">Answer</div> -->
+            <!-- <div class="answerCardFront">nonsense text 3</div> -->
           </div>
-          <div class="card card3">
-            <div class="face front">front</div>
-            <div class="face back"></div>
+
+          <div class="answercard4">
+            <!-- <div class="answer-cardback">Answer</div> -->
+            <!-- <div class="answerCardFront">nonsense text 4</div> -->
           </div>
-          <div class="card card4">
-            <div class="face front">front</div>
-            <div class="face back"></div>
+
+          <div class="answercard5">
+            <!-- <div class="answer-cardback">Answer</div> -->
+            <!-- <div class="answerCardFront">nonsense text 5</div> -->
           </div>
-          <div class="card card5">
-            <div class="face front">front</div>
-            <div class="face back"></div>
-          </div>
+          
         </div>
+        <!-- <input id="selectbestcard" type="button" value="Select Preferred Card" /> // (show later) -->
       </div>
     </div>
+
+<!-- Start of frame 2 - next player's turn to choose for same question -->
+
+<!-- <div class="row">
+  <div class="column left" style="background-color: rgb(144, 160, 135)">
+    <h3>QUESTION</h3>
+    <p>[Player 1] asks the question</p>
+    <input class="dealquestion" type="button" value="Start Game" />
+      <div class="card text-white bg-dark mb-3" style="max-width: 16rem;">
+      <div class="card-body">
+      <p class="questionCard-text">Click "START GAME" to draw a question card</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="column right" style="background-color: rgb(246, 247, 239)">
+    <h3>ANSWER CARDS</h3>
+    <p>[Player 2] chooses the preferred answer</p>
+    <input id="dealanswers" type="button" value="Deal Answer Cards" />
+
+    
+    
+    <div class="answer-card">
+      
+      <div class="answercard1">
+        <div class="answerCardBack">Answer</div>
+        <div class="answerCardFront">nonsense text 1</div>
+      </div>
+      <div class="answercard2">
+        <div class="answerCardBack">Answer</div>
+        <div class="answerCardFront">nonsense text 2</div>
+      </div>
+      <div class="answercard3">
+        <div class="answerCardBack">Answer</div>
+        <div class="answerCardFront">nonsense text 3</div>
+      </div>
+      <div class="answercard4">
+        <div class="answerCardBack">Answer</div>
+        <div class="answerCardFront">nonsense text 4</div>
+      </div>
+      <div class="answercard5">
+        <div class="answerCardBack">Answer</div>
+        <div class="answerCardFront">nonsense text 5</div>
+      </div>
+      
+    </div>
+    <input id="selectbestcard" type="button" value="Select Preferred Card" /> // (show later)
+  </div>
+</div> -->
+
         <script src="script.js" type= "module" charset="utf-8"></script>
   </body>
 </html>
