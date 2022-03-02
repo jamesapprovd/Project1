@@ -4,7 +4,7 @@
 class Player {
   constructor(
     name,
-    role = ["decider", "answerer"],
+    role = ["decidingPlayer", "answerer"],
     points = 0,
     playercards = []
   ) {
@@ -17,13 +17,6 @@ class Player {
     console.log(this.points);
   }
 
-  getAnswerCards() {}
-
-  // chooseAnswer {
-  //   if this.role = "answerer"() {
-  //   }
-  // }
-
   winRound() {
     points += 1;
     console.log(
@@ -31,17 +24,6 @@ class Player {
     );
   }
 }
-const player1 = new Player("player1");
-const player2 = new Player("player2");
-const player3 = new Player("player3");
-const player4 = new Player("player4");
-const player5 = new Player("player5");
-
-//Set up varianble for number of players //
-
-/////////////////////////////////////////////////////////////
-//// QUESTIONS SETUP
-/////////////////////////////////////////////////////////////
 
 const questionCards = [
   "______ is a sure sign of mankind's decline",
@@ -81,26 +63,6 @@ const questionCards = [
   "Siao la! Did you think you could escape from _____?",
   "Ladies and gentlemen, I have discovered something amazing. I have discovered ____.",
 ];
-
-const startQuestion = document.querySelector(".dealquestion");
-startQuestion.addEventListener("click", getQuestionCard);
-
-// Deal new question card from question deck
-function getQuestionCard() {
-  // document.querySelector(".dealquestion").innerText = "GAME STARTED!";
-  console.log("Start Game button is working");
-  const selectedQuestionCard =
-    questionCards[Math.floor(Math.random() * questionCards.length)];
-  const p = document.createElement("p");
-  p.innerText = selectedQuestionCard;
-  p.className = "selectedQuestion";
-  document.querySelector(".questionCard-text").innerText = p.innerText;
-}
-
-/////////////////////////////////////////////////////////////
-//// ANSWERS SETUP
-/////////////////////////////////////////////////////////////
-
 const answers = [
   "10,000 Ukrainian refugees.",
   "100% Pure New Zealand.",
@@ -710,63 +672,125 @@ const answers = [
   "Never showering.",
 ];
 
-const answerCard = document.querySelector(".answer-card");
-const answerQuestion = document.querySelector("#dealanswers"); //clicking the "DEAL ANSWER CARD BUTTON"
-answerQuestion.addEventListener("click", dealAnswerCards);
+const player1 = new Player("player1");
+console.log(player1);
+const player2 = new Player("player2");
+console.log(player2);
+const player3 = new Player("player3");
+console.log(player3);
+const player4 = new Player("player4");
+console.log(player4);
+const player5 = new Player("player5");
+console.log(player5);
+
+///////////////////////////////////////////////////
+//PLAYER SELECTION
+///////////////////////////////////////////////////
+
+// const decidingPlayerText = document.querySelector("#decidingPlayerText");
+// const newDecidingPlayerText = document.createElement("newText");
+// newText.innerText = "`${playerName} decides the winning card";
+
+const players = [player1, player2, player3, player4, player5];
+let answerers = [];
+for (let i = 1; i <= 5; i++) {
+  const decidingPlayer = players[i - 1];
+  answerers = [...players]; //[player2, player3, player4, player5]
+  answerers.splice(i - 1, 1); //this prevents any change to original array
+  console.log(`Deciding player is ${decidingPlayer.name}`);
+
+  const startQuestion = document.querySelector(".dealquestion");
+  startQuestion.addEventListener("click", getQuestionCard);
+
+  const answerCard = document.querySelector(".answer-card");
+  const answerQuestion = document.querySelector("#dealanswers"); //clicking the "DEAL ANSWER CARD BUTTON"
+  answerQuestion.addEventListener("click", dealAnswerCards);
+
+  for (const player of answerers) {
+    console.log(`One of the answerers is ${player.name}`); //player2
+    insertAnswers(player); //generate answers after dealing
+    // create button for submit (rmb e.preventDefault())
+    // add event listener to button
+    // push answerer's answer
+  }
+}
+
+/////////////////////////////////////////////////////////////
+//// QUESTIONS SETUP
+/////////////////////////////////////////////////////////////
+
+// const startQuestion = document.querySelector(".dealquestion");
+// startQuestion.addEventListener("click", getQuestionCard);
+
+// Deal new question card from question deck
+function getQuestionCard() {
+  // document.querySelector(".dealquestion").innerText = "GAME STARTED!";
+  console.log("Start Game button is working");
+  const selectedQuestionCard =
+    questionCards[Math.floor(Math.random() * questionCards.length)];
+  const p = document.createElement("p");
+  p.innerText = selectedQuestionCard;
+  p.className = "selectedQuestion";
+  document.querySelector(".questionCard-text").innerText = p.innerText;
+}
+
+/////////////////////////////////////////////////////////////
+//// ANSWERS SETUP
+/////////////////////////////////////////////////////////////
+
+// const answerCard = document.querySelector(".answer-card");
+// const answerQuestion = document.querySelector("#dealanswers"); //clicking the "DEAL ANSWER CARD BUTTON"
+// answerQuestion.addEventListener("click", dealAnswerCards);
 
 // Deal answer cards to current player in sequence
 function dealAnswerCards() {
   console.log("Answer cards button is working");
-  document.querySelector(".beforedeal").className =
-    "flex-container answer-card";
-  // document.querySelectorAll(".answer-card");
-  // answerQuestion.clicked = true; // set flag for clicked state
-  // answerCard.classList.toggle("flipCard");
+  document.querySelector(".beforedeal").className = "flex-container"; //changing the classname from "before deal" to "flex container" / answer card
+
+  document.querySelectorAll(".answer-card");
+  insertAnswers();
+  //insert innerHTML here
 }
-// delay = 500; //delay the effect
-// fadetime = 500; // fade in time
-// set timeout
-
-// document.querySelector(".answercard1");
-// // document.querySelector(".answercard1").delay(delay).fadeIn(fadetime);
-// // let answercard1 = [answer 1, answer];
-
-// document.querySelector(".answercard2");
-// let answercard2 = [];
-// // .delay(delay * 2)
-// // .fadeIn(fadetime);
-// document.querySelector(".answercard3");
-// let answercard3 = [];
-// // .delay(delay * 3)
-// // .fadeIn(fadetime);
-// document.querySelector(".answercard4");
-// let answercard4 = [];
-// // .delay(delay * 4)
-// // .fadeIn(fadetime);
-// document.querySelector(".answercard5");
-// let answercard5 = [];
-// // .delay(delay * 5)
-// // .fadeIn(fadetime);
-// // };
 
 // Insert answers from answer deck to 5 answer cards
 
-function insertAnswers() {
-  for (let i = 0; i <= answers.length; i++) {
-    const selectedAnswerText =
-      answerCards.splice[Math.floor(Math.random() * answerCards.length)]; //mind the (0, 2....)
+// function insertAnswers() {
+// const selectedAnswerText =
+//   answerCards.splice[Math.floor(Math.random() * answerCards.length)]; //mind the (0, 2....)
+// const answerText1 = document.createElement("answercard1");
+// answerText.innerText = selectedAnswerText;
+// answerText.className = "selectedAnswer";
+// document.querySelector(".answercard1-text").innerText = selectedAnswerText;
+// }
 
-    const answerText1 = document.createElement("answercard1");
-    answerText.innerText = selectedAnswerText;
-    answerText.className = "selectedAnswer";
-    document.querySelector(".answercard1-text").innerText = selectedAnswerText;
+//for one player
+function insertAnswers(player) {
+  player.playercards = []; //reset player cards for each round
+  //got random text from answers
+  const randomText = answers.splice(
+    [Math.floor(Math.random() * answers.length)],
+    5
+  ); //getting random text
+  //splice
+  for (let i = 1; i <= 5; i++) {
+    const answerCard = document.querySelector(`.answercard${i}`);
+    console.log();
+    answerCard.innerText = randomText[i - 1];
+    player.playercards.push(randomText[i - 1]); //for array to find winner
+    answerCard.addEventListener("click", saveChoice);
   }
+  // answerCard.className = `answerCard${i + 1}`;
 }
-// 5 cards
 
-// Nested for loops
-// For each
+// let actualAnswers = []
+// function submitAnswer(){
+//   //save out player's choice
+//   actualAnswers.push(temporaryChoice)
+//   continue
+// }
 
-// Player selects preferred answer card
-
-// Game announces preferred answer card
+let temporaryChoice = "";
+function saveChoice(e) {
+  e.preventDefault();
+  temporaryChoice = e.target.innerText;
+}

@@ -92,6 +92,10 @@ input[type="button"] {
   user-select: none;
 }
 
+.beforedeal {
+  /* insert deck css here later */
+}
+
 .flex-container {
   display: flex;
   flex-direction: row;
@@ -100,6 +104,7 @@ input[type="button"] {
   align-items: baseline;
 }
 
+/* this flex container is for the child elements in the container, but is already done using .answer-card */
 /* .flex-container > div {
   background-color: #f0e7e7;
   width: 100px;
