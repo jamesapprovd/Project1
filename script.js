@@ -675,43 +675,44 @@ const answers = [
 const player1 = new Player("player1");
 console.log(player1);
 const player2 = new Player("player2");
-console.log(player2);
 const player3 = new Player("player3");
-console.log(player3);
 const player4 = new Player("player4");
-console.log(player4);
 const player5 = new Player("player5");
-console.log(player5);
 
-///////////////////////////////////////////////////
-//PLAYER SELECTION
-///////////////////////////////////////////////////
-
-// const decidingPlayerText = document.querySelector("#decidingPlayerText");
-// const newDecidingPlayerText = document.createElement("newText");
-// newText.innerText = "`${playerName} decides the winning card";
-
+//Creating Deciding Player and Answering Players (answerers)
 const players = [player1, player2, player3, player4, player5];
-// let answerers = [];
 for (let i = 1; i <= 5; i++) {
   const decidingPlayer = players[i - 1];
   let answerers = [...players]; //[player2, player3, player4, player5]
   answerers.splice(i - 1, 1); //this prevents any change to original array
   console.log(`Deciding player is ${decidingPlayer.name}`);
 
+  //Deals the question card
   const startQuestion = document.querySelector(".dealquestion");
   startQuestion.addEventListener("click", getQuestionCard);
 
-  const answerCard = document.querySelector(".answer-card");
+  //Deal answer card button
+  const answerCardbutton = document.querySelector(".answer-card");
   const answerQuestion = document.querySelector("#dealanswers"); //clicking the "DEAL ANSWER CARD BUTTON"
   answerQuestion.addEventListener("click", dealAnswerCards);
 
   function dealAnswerCards() {
     console.log("Answer cards button is working");
-    document.querySelector(".beforedeal").className = "flex-container"; //changing the classname from "before deal" to "flex container" / answer card
-
-    document.querySelectorAll(".answer-card");
-    answerers.forEach((player) => insertAnswers(player));
+    function createDivs() {
+      for (let i = 1; i <= 5; i++) {
+        //iterate across 5 players
+        const playerRow = document.createElement("div");
+        for (let j = 1; j <= 5; j++) {
+          //iterate across 5 cards per player
+          const card = document.createElement("div");
+          card.id = `p${i}c${j}`;
+          //insert card contents
+          //append card to player's row
+        }
+      }
+    }
+    // document.querySelector(".beforedeal").className = "flex-container"; //changing the classname from "before deal" to "flex container" / answer card
+    // answerers.forEach((player) => insertAnswers(player));
     //insert innerHTML here
   }
 
@@ -727,9 +728,6 @@ for (let i = 1; i <= 5; i++) {
 /////////////////////////////////////////////////////////////
 //// QUESTIONS SETUP
 /////////////////////////////////////////////////////////////
-
-// const startQuestion = document.querySelector(".dealquestion");
-// startQuestion.addEventListener("click", getQuestionCard);
 
 // Deal new question card from question deck
 function getQuestionCard() {
@@ -747,32 +745,22 @@ function getQuestionCard() {
 //// ANSWERS SETUP
 /////////////////////////////////////////////////////////////
 
-// const answerCard = document.querySelector(".answer-card");
-// const answerQuestion = document.querySelector("#dealanswers"); //clicking the "DEAL ANSWER CARD BUTTON"
-// answerQuestion.addEventListener("click", dealAnswerCards);
-
-// Deal answer cards to current player in sequence
-// function dealAnswerCards() {
-//   console.log("Answer cards button is working");
-//   document.querySelector(".beforedeal").className = "flex-container"; //changing the classname from "before deal" to "flex container" / answer card
-
-//   document.querySelectorAll(".answer-card");
-//   insertAnswers();
-//   //insert innerHTML here
+// this creates the diff player divs in the HTML
+// function createDivs() {
+//   for (let i = 1; i <= 5; i++) {
+//     //iterate across 5 players
+//     const playerRow = document.createElement("div");
+//     for (let j = 1; j <= 5; j++) {
+//       //iterate across 5 cards per player
+//       const card = document.createElement("div");
+//       card.id = `p${i}c${j}`;
+//       //insert card contents
+//       //append card to player's row
+//     }
+//   }
 // }
 
-// Insert answers from answer deck to 5 answer cards
-
-// function insertAnswers() {
-// const selectedAnswerText =
-//   answerCards.splice[Math.floor(Math.random() * answerCards.length)]; //mind the (0, 2....)
-// const answerText1 = document.createElement("answercard1");
-// answerText.innerText = selectedAnswerText;
-// answerText.className = "selectedAnswer";
-// document.querySelector(".answercard1-text").innerText = selectedAnswerText;
-// }
-
-//for one player
+//inserting answer texts for each player
 function insertAnswers(player) {
   player.playercards = []; //reset player cards for each round
   //got random text from answers
@@ -795,15 +783,9 @@ function insertAnswers(player) {
     player.playercards.push(randomText[i - 1]); //for array to find winner
     answerCard.addEventListener("click", saveChoice);
   }
+
   // answerCard.className = `answerCard${i + 1}`;
 }
-
-// let actualAnswers = []
-// function submitAnswer(){
-//   //save out player's choice
-//   actualAnswers.push(temporaryChoice)
-//   continue
-// }
 
 let temporaryChoice = "";
 function saveChoice(e) {
