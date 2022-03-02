@@ -692,10 +692,10 @@ console.log(player5);
 // newText.innerText = "`${playerName} decides the winning card";
 
 const players = [player1, player2, player3, player4, player5];
-let answerers = [];
+// let answerers = [];
 for (let i = 1; i <= 5; i++) {
   const decidingPlayer = players[i - 1];
-  answerers = [...players]; //[player2, player3, player4, player5]
+  let answerers = [...players]; //[player2, player3, player4, player5]
   answerers.splice(i - 1, 1); //this prevents any change to original array
   console.log(`Deciding player is ${decidingPlayer.name}`);
 
@@ -705,6 +705,15 @@ for (let i = 1; i <= 5; i++) {
   const answerCard = document.querySelector(".answer-card");
   const answerQuestion = document.querySelector("#dealanswers"); //clicking the "DEAL ANSWER CARD BUTTON"
   answerQuestion.addEventListener("click", dealAnswerCards);
+
+  function dealAnswerCards() {
+    console.log("Answer cards button is working");
+    document.querySelector(".beforedeal").className = "flex-container"; //changing the classname from "before deal" to "flex container" / answer card
+
+    document.querySelectorAll(".answer-card");
+    answerers.forEach((player) => insertAnswers(player));
+    //insert innerHTML here
+  }
 
   for (const player of answerers) {
     console.log(`One of the answerers is ${player.name}`); //player2
@@ -743,14 +752,14 @@ function getQuestionCard() {
 // answerQuestion.addEventListener("click", dealAnswerCards);
 
 // Deal answer cards to current player in sequence
-function dealAnswerCards() {
-  console.log("Answer cards button is working");
-  document.querySelector(".beforedeal").className = "flex-container"; //changing the classname from "before deal" to "flex container" / answer card
+// function dealAnswerCards() {
+//   console.log("Answer cards button is working");
+//   document.querySelector(".beforedeal").className = "flex-container"; //changing the classname from "before deal" to "flex container" / answer card
 
-  document.querySelectorAll(".answer-card");
-  insertAnswers();
-  //insert innerHTML here
-}
+//   document.querySelectorAll(".answer-card");
+//   insertAnswers();
+//   //insert innerHTML here
+// }
 
 // Insert answers from answer deck to 5 answer cards
 
@@ -773,6 +782,13 @@ function insertAnswers(player) {
   ); //getting random text
   //splice
   for (let i = 1; i <= 5; i++) {
+    // GENERATING A CARD AUTOMATICALLY VIA JS
+    // answerCard = create div
+    // answerCard.id = player.name + "-" + i
+    // add class
+    // add innerText
+    // append to DOM querySelector("#" + player.name)
+    // addEventListener
     const answerCard = document.querySelector(`.answercard${i}`);
     console.log();
     answerCard.innerText = randomText[i - 1];

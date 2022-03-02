@@ -14,8 +14,8 @@
   <p>
         <label for="playerNumbers">Number of players:</label>
         <select name="playerNumbers" id="playerNumbers">
-          <!-- <option value="three">3</option>
-          <option value="four">4</option> -->
+          <option value="three">3</option>
+          <option value="four">4</option>
           <option value="five">5</option>
         </select>
         <input type="submit" value="Submit">  
@@ -26,7 +26,7 @@
     <div class="row">
       <div class="column left" style="background-color: rgb(144, 160, 135)">
         <h3>QUESTION</h3>
-        <p id="decidingPlayerText">[Player 1] asks the question</p>
+        <p id="decidingPlayerText">Player 1 asks the question</p>
         <input class="dealquestion" type="button" value="Start Game" />
           <div class="card text-white bg-dark mb-3" style="max-width: 16rem;">
           <div class="card-body">
@@ -37,40 +37,64 @@
       
       <div class="column right" style="background-color: rgb(246, 247, 239)">
         <h3>ANSWER CARDS</h3>
-        <p id=answererText>[Player 2] chooses the preferred answer</p>
+        <p id=answererText>Player 2 chooses the preferred answer</p>
         <input id="dealanswers" type="button" value="Deal Answer Cards" />
         
-        <div class = "beforedeal">
+        <div class = "beforedeal"> 
+        <!-- do 1 for each answer player -->
                  
-          <div class="answer-card answercard1">
-            <!-- <div class="answer-cardback">Answer</div> -->
-            <!-- <div class="answerCardFront">nonsense text 1</div> -->
-          </div>
-
-          <div class="answer-card answercard2">
-            <!-- <div class="answer-cardback">Answer</div> -->
-            <!-- <div class="answerCardFront">nonsense text 2</div> -->
-          </div>
-
-          <div class="answer-card answercard3">
-            <!-- <div class="answer-cardback">Answer</div> -->
-            <!-- <div class="answerCardFront">nonsense text 3</div> -->
-          </div>
- 
-          <div class="answer-card answercard4">
-            <!-- <div class="answer-cardback">Answer</div> -->
-            <!-- <div class="answerCardFront">nonsense text 4</div> -->
-          </div>
-
-          <div class="answer-card answercard5">
-            <!-- <div class="answer-cardback">Answer</div> -->
-            <!-- <div class="answerCardFront">nonsense text 5</div> -->
-          </div>
+          <div class="answer-card answercard1"></div>
+          <div class="answer-card answercard2"></div>
+          <div class="answer-card answercard3"></div>
+          <div class="answer-card answercard4"></div>
+          <div class="answer-card answercard5"></div>
           
         </div>
-        <!-- <input id="selectbestcard" type="button" value="Select Preferred Card" /> // (show later) -->
+    
       </div>
     </div>
+
+    <div class="row">
+      <div class="column left" style="background-color: rgb(144, 160, 135)">
+                </div>
+
+        <div class="column right" style="background-color: rgb(246, 247, 239)">
+          <p id=player3answers>Player 3 chooses the preferred answer</p>
+          </div>
+
+      </div>
+      
+      <div class="row">
+        <div class="column left" style="background-color: rgb(144, 160, 135)">
+                 
+          </div>
+  
+          <div class="column right" style="background-color: rgb(246, 247, 239)">
+            <p id=player3answers>Player 4 chooses the preferred answer</p>
+            </div>
+  
+        </div>
+
+        <div class="row">
+          <div class="column left" style="background-color: rgb(144, 160, 135)">
+        </div>
+    
+            <div class="column right" style="background-color: rgb(246, 247, 239)">
+              <p id=player5answers>Player 5 chooses the preferred answer</p>
+              </div>
+    
+          </div>
+
+          <div class="row">
+            <div class="column left" style="background-color: rgb(78, 139, 43)">
+              <h3>Player 1's Answer Choice</h3>
+              <p id="decidingPlayerText">Player 1 chooses favorite answer</p>
+              
+              </div>
+      
+              <div class="column right" style="background-color: rgb(246, 247, 239)">
+                <input id="selectbestcard" type="button" value="Done Selecting" /> 
+                 </div>
 
         <script src="script.js" type= "module" charset="utf-8"></script>
   </body>
