@@ -93,7 +93,8 @@ input[type="button"] {
 }
 
 .beforedeal {
-  /* insert deck css here later */
+  position: absolute;
+  opacity: 0;
 }
 
 .flex-container {
@@ -122,7 +123,7 @@ input[type="button"] {
   height: 200px;
   line-height: 3em;
   text-align: center;
-  text-transform: capitalize;
+  text-transform: full-width;
   box-shadow: 4px 4px 10px #555; /* Slim drop shadow so as not to bleed into the bounding box of the next card  */
 }
 
