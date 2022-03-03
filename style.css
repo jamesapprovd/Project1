@@ -136,4 +136,3 @@ input[type="button"] {
   border-radius: 0.5rem;
   box-shadow: 4px 4px 10px #555; /* Slim drop shadow so as not to bleed into the bounding box of the next card  */
 }
-}

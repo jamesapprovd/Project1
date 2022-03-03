@@ -20,7 +20,7 @@ class Player {
   winRound() {
     this.points += 1;
     alert(
-      `${this.name}'s card was selected as the best response and wins the round! ${this.name} has ${this.points} points`
+      `${this.name}'s card wins the round! ${this.name} has ${this.points} points`
     );
   }
 }
@@ -63,6 +63,10 @@ const questionCards = [
   "Come with me, and I will show you a world of _____.",
   "Siao la! Did you think you could escape from _____?",
   "Ladies and gentlemen, I have discovered something amazing. I have discovered ____.",
+  "My dad and I enjoy ______ together.",
+  "Shut up, Karen! At least I'm not ______.",
+  "When i pooped, what came out?",
+  "When asked about the biggest threat facing the nation, 60% of Americans said _____.",
 ];
 const answers = [
   "10,000 Ukrainian refugees.",
@@ -549,7 +553,6 @@ const answers = [
   "The land of chocolate.",
   "The light of a billion suns.",
   "The Make-A-Wish Foundation.",
-  "The Make-A-Wish® Foundation.",
   "The miracle of childbirth.",
   "The morbidly obese.",
   "The only gay person in a hundred kilometers.",
@@ -665,7 +668,7 @@ const answers = [
   "Hurting people's feelings.",
   "Idiots.",
   "Illegal drugs.",
-  "Kisisng mom on the lips.",
+  "Kissing mom on the lips.",
   "Licking a used bandaid.",
   "Lighting stuff on fire.",
   "Literally ruining my life.",
@@ -688,47 +691,55 @@ const player5 = new Player("player5");
 const startQuestion = document.querySelector(".dealquestion");
 startQuestion.addEventListener("click", getQuestionCard);
 const players = [player1, player2, player3, player4, player5];
-const firstDecider = 2;
+const firstDecider = 3;
 const decidingPlayer = players[firstDecider - 1];
 let answerers = [...players]; //[player2, player3, player4, player5]
 answerers.splice(firstDecider - 1, 1); //this prevents any change to original array
 console.log(`Deciding player is ${decidingPlayer.name}`);
 
+//Listing out the answering players in each round
 const playerText = document.querySelectorAll("#answererText");
-// console.log(playerText);
-// playerText.forEach((player, index)=>{player.innerText = `Player ${answerers[index]} chooses the preferred answer`})
 playerText.forEach((player, index) => {
   player.innerText = `${answerers[index].name} chooses the preferred answer`;
 });
 
+/////////////////////////////////////////////////////////////
+//// QUESTIONS SETUP
+/////////////////////////////////////////////////////////////
+
+// Deal new question card from question deck
+function getQuestionCard() {
+  console.log("Start Game button is working");
+  const selectedQuestionCard =
+    questionCards[Math.floor(Math.random() * questionCards.length)];
+  const p = document.createElement("p");
+  p.innerText = selectedQuestionCard;
+  p.className = "selectedQuestion";
+  document.querySelector(".questionCard-text").innerText = p.innerText;
+  game();
+}
+
+///////////////////////////////////////////////////////////////
+//ANSWERERS SETUP
+///////////////////////////////////////////////////////////////
+
 function game() {
-  // firstDecider = (firstDecider + 1) % 5;
-  //loop through the rounds
+  // firstDecider = (firstDecider + 1) % 5; //loop through the rounds
   const decidingPlayer = players[firstDecider - 1];
   let answerers = [...players]; //[player2, player3, player4, player5]
   answerers.splice(firstDecider - 1, 1); //this prevents any change to original array
   console.log(`Deciding player is ${decidingPlayer.name}`);
   const playerText = document.querySelectorAll("#answererText");
   console.log(playerText);
-  // playerText.forEach((player, index)=>{player.innerText = `Player ${answerers[index]} chooses the preferred answer`})
   playerText.forEach((player, index) => {
     player.innerText = `${answerers[index].name} chooses the preferred answer`;
   });
-  //get questions
-  // const startQuestion = document.querySelector(".dealquestion");
-  // startQuestion.addEventListener("click", getQuestionCard);
-  //generate answers
-  // const answerCard = document.querySelector(".answer-card");
+
   const answerQuestion = document.querySelectorAll("#dealanswers"); //clicking the "DEAL ANSWER CARD BUTTON"
-  //answerQuestion = [<input>, <input>, <input>, <input>]
-  // answerQuestion.forEach((button) =>
-  //   button.addEventListener("click", dealAnswerCards)
-  // );
+
   console.log(answerQuestion); //deal buttons
   for (let i = 0; i < answerQuestion.length; i++) {
     answerQuestion[i].addEventListener("click", () => {
-      // console.log("Answer cards button is working");
-      // console.log(document.querySelector(".beforedeal"));
       document
         .querySelectorAll(".beforedeal")
         [i].classList.toggle("flex-container");
@@ -749,7 +760,7 @@ function game() {
     player.playercards = [...randomTexts];
     console.log(randomTexts);
     for (let j = 1; j <= 5; j++) {
-      //loopinh through their answer cards
+      //looping through their answer cards
       const card = document.createElement("div");
       card.className = "answer-card";
       // console.log(document.querySelectorAll(".beforedeal")[i]);
@@ -760,85 +771,45 @@ function game() {
   }
 }
 
-let choices = [];
+////////////////////////////////////////////////////////
+///CLICKING ANSWER CARDS
+////////////////////////////////////////////////////////
 
 function clickCard(e) {
-  choices.push(e.target.innerText);
-  // document.querySelector(".answer-card")
   e.target.classList.toggle("selected-card");
   console.log(e.target.classList);
 }
+//Activating the "Done Selecting" button
 document
   .querySelector("#selectbestcard")
   .addEventListener("click", doneSelecting);
 
+//Where the magic happens - selecting the winning card
 function doneSelecting() {
   const selectedAnswers = document.querySelectorAll(".selected-card");
-
   if (selectedAnswers.length < answerers.length) {
-    alert("Not all players have made their choice!");
+    alert("Not all players have made their choice!"); //will have to find another logic if players click multiple cards
   } else {
     // console.log(selectedAnswers);
-
     for (let i = 0; i < selectedAnswers.length; i++) {
       const text = selectedAnswers[i].innerText;
-      console.log(text);
       const finalChoice = document.createElement("div");
       finalChoice.className = "answer-card";
       document.querySelector("#finalchoice").append(finalChoice);
       finalChoice.innerText = text;
-      console.log(text);
       finalChoice.addEventListener("click", () => {
         console.log(finalChoice.innerText);
-        // alert(`${text} is the winning card!`);
         for (let j = 0; j < answerers.length; j++) {
-          console.log(answerers[j]);
-          console.log(answerers[j].playercards);
-          console.log(text);
+          // console.log(answerers[j]);
+          // console.log(answerers[j].playercards);
+          // console.log(text);
           if (answerers[j].playercards.indexOf(text) !== -1) {
-            console.log(text);
+            // console.log(text);
             answerers[j].winRound();
             game();
           }
         }
       });
     }
-
-    // choices.forEach((text) => {
-    //   const textChoice = document.createElement("p");
-    //   textChoice.innerText = text;
-    //   textChoice.addEventListener("click", chooseFavourite);
-    //   document.querySelector("#decider-choices").append(textChoice);
-    // });
   }
 }
-
-function chooseFavourite(e) {
-  console.log(`"${e.target.innerText}" is my favourite!!!`);
-}
-/////////////////////////////////////////////////////////////
-//// QUESTIONS SETUP
-/////////////////////////////////////////////////////////////
-
-// const startQuestion = document.querySelector(".dealquestion");
-// startQuestion.addEventListener("click", getQuestionCard);
-
-// Deal new question card from question deck
-function getQuestionCard() {
-  // document.querySelector(".dealquestion").innerText = "GAME STARTED!";
-  console.log("Start Game button is working");
-  const selectedQuestionCard =
-    questionCards[Math.floor(Math.random() * questionCards.length)];
-  const p = document.createElement("p");
-  p.innerText = selectedQuestionCard;
-  p.className = "selectedQuestion";
-  document.querySelector(".questionCard-text").innerText = p.innerText;
-  game();
-}
-
-/////////////////////////////////////////////////////////////
-//// SELECTED ANSWERS CHOICES
-/////////////////////////////////////////////////////////////
-
-// const selectedAnswers = document.querySelectorAll(".selected-card");
-// console.log(selectedAnswers);
