@@ -121,3 +121,19 @@ input[type="button"] {
   border-radius: 0.5rem;
   box-shadow: 4px 4px 10px #555; /* Slim drop shadow so as not to bleed into the bounding box of the next card  */
 }
+
+.selected-card {
+  border: 1px solid #333;
+  background-color: yellow;
+  margin: 5px;
+  color: black;
+  width: 150px;
+  height: 200px;
+  line-height: 2em;
+  text-align: center;
+  text-transform: full-width;
+  font-size: 16px;
+  border-radius: 0.5rem;
+  box-shadow: 4px 4px 10px #555; /* Slim drop shadow so as not to bleed into the bounding box of the next card  */
+}
+}
