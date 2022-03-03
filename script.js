@@ -20,13 +20,14 @@ class Player {
   winRound() {
     points += 1;
     console.log(
-      `${this.name}'s card was selected as the best and wins the round!`
+      "`${this.name}`'s card was selected as the best response and wins the round!"
     );
   }
 }
 
 const questionCards = [
   "______ is a sure sign of mankind's decline",
+  "Why is learning Software Engineering so darned difficult?",
   "Why hasn't Singapore found its next prime minister?",
   "______: good dead or alive.",
   "_________: tested on children, mother approved",
@@ -679,6 +680,10 @@ const player3 = new Player("player3");
 const player4 = new Player("player4");
 const player5 = new Player("player5");
 
+//////////////////////////////////////////////////////////////////
+//GAME SETUP
+//////////////////////////////////////////////////////////////////
+
 //Creating Deciding Player and Answering Players (answerers)
 const players = [player1, player2, player3, player4, player5];
 for (let i = 1; i <= 5; i++) {
@@ -691,29 +696,15 @@ for (let i = 1; i <= 5; i++) {
   const startQuestion = document.querySelector(".dealquestion");
   startQuestion.addEventListener("click", getQuestionCard);
 
-  //Deal answer card button
+  //Deal answer cards button
   const answerCardbutton = document.querySelector(".answer-card");
-  const answerQuestion = document.querySelector("#dealanswers"); //clicking the "DEAL ANSWER CARD BUTTON"
-  answerQuestion.addEventListener("click", dealAnswerCards);
+  const answerQuestion = document.querySelector(".dealanswers"); //clicking the "DEAL ANSWER CARD BUTTON"
+  answerQuestion.addEventListener("click", createDivs, dealAnswerCards);
 
   function dealAnswerCards() {
     console.log("Answer cards button is working");
-    function createDivs() {
-      for (let i = 1; i <= 5; i++) {
-        //iterate across 5 players
-        const playerRow = document.createElement("div");
-        for (let j = 1; j <= 5; j++) {
-          //iterate across 5 cards per player
-          const card = document.createElement("div");
-          card.id = `p${i}c${j}`;
-          //insert card contents
-          //append card to player's row
-        }
-      }
-    }
-    // document.querySelector(".beforedeal").className = "flex-container"; //changing the classname from "before deal" to "flex container" / answer card
-    // answerers.forEach((player) => insertAnswers(player));
-    //insert innerHTML here
+    document.querySelector(".beforedeal").className = "flex-container"; //changing the classname from "before deal" to "flex container" / answer card
+    answerers.forEach((player) => insertAnswers(player));
   }
 
   for (const player of answerers) {
@@ -746,19 +737,21 @@ function getQuestionCard() {
 /////////////////////////////////////////////////////////////
 
 // this creates the diff player divs in the HTML
-// function createDivs() {
-//   for (let i = 1; i <= 5; i++) {
-//     //iterate across 5 players
-//     const playerRow = document.createElement("div");
-//     for (let j = 1; j <= 5; j++) {
-//       //iterate across 5 cards per player
-//       const card = document.createElement("div");
-//       card.id = `p${i}c${j}`;
-//       //insert card contents
-//       //append card to player's row
-//     }
-//   }
-// }
+function createDivs() {
+  for (let i = 1; i <= 5; i++) {
+    //iterate across 5 players
+    const playerRow = document.createElement("div");
+    for (let j = 1; j <= 5; j++) {
+      //iterate across 5 cards per player
+      const card = document.createElement("div");
+      card.id = `p${i}c${j}`;
+      // document.querySelector(".row").append(card.id);
+
+      //insert card contents
+      //append card to player's row
+    }
+  }
+}
 
 //inserting answer texts for each player
 function insertAnswers(player) {
@@ -767,8 +760,8 @@ function insertAnswers(player) {
   const randomText = answers.splice(
     [Math.floor(Math.random() * answers.length)],
     5
-  ); //getting random text
-  //splice
+  );
+
   for (let i = 1; i <= 5; i++) {
     // GENERATING A CARD AUTOMATICALLY VIA JS
     // answerCard = create div

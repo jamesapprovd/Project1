@@ -94,8 +94,7 @@ input[type="button"] {
 }
 
 .beforedeal {
-  position: absolute;
-  opacity: 0;
+  content-visibility: hidden;
 }
 
 .flex-container {
@@ -104,6 +103,7 @@ input[type="button"] {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: baseline;
+  content-visibility: visible;
 }
 
 .answer-card {
