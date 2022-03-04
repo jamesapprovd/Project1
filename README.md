@@ -1,4 +1,4 @@
-# Project1
+# Project1 - Cards against humanity
 
 Explanations of the technologies used: HTML, CSS, JavaScript: Dom manipulation, event listeners, arrays
 
