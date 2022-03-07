@@ -27,6 +27,10 @@
 
 **Technologies used:** HTML, CSS, JavaScript: Dom manipulation, event listeners, arrays storing the question cards and answer cards
 
-Further stretch goals (in future builds):
+**Unsolved problems:
+
+(a) Answer text does not render on the answer cards upon hitting "Done Selecting" button if the selected cards are hidden by a player
+
+**Further stretch goals (in future builds):
 - changing the number of players
 - scoreboard
